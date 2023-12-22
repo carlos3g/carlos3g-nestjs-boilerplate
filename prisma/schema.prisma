@@ -1,0 +1,48 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl", "debian-openssl-1.1.x", "linux-arm64-openssl-1.1.x"]
+}
+
+datasource db {
+  provider     = "postgres"
+  url          = env("DATABASE_URL")
+  relationMode = "foreignKeys"
+}
+
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+enum Roles {
+  Super    @map("super")
+  Customer @map("customer")
+
+  @@map("roles")
+}
+
+enum UserStatus {
+  Active     @map("active")
+  Canceled   @map("canceled")
+  Deleted    @map("deleted")
+  Unverified @map("unverified")
+
+  @@map("user_status")
+}
+
+model User {
+  id             BigInt     @id() @default(autoincrement()) @db.BigInt
+  uuid           String     @unique
+  name           String
+  documentNumber String?    @unique @map("document_number")
+  email          String
+  phone          String     @unique
+  password       String
+  status         UserStatus
+  role           Roles
+  //
+  createdAt      DateTime   @map("created_at")
+  updatedAt      DateTime   @map("updated_at")
+  deletedAt      DateTime?  @map("deleted_at")
+
+  @@map("users")
+}

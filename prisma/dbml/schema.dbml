@@ -1,0 +1,30 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table users {
+  id BigInt [pk, increment]
+  uuid String [unique, not null]
+  name String [not null]
+  documentNumber String [unique]
+  email String [not null]
+  phone String [unique, not null]
+  password String [not null]
+  status UserStatus [not null]
+  role Roles [not null]
+  createdAt DateTime [not null]
+  updatedAt DateTime [not null]
+  deletedAt DateTime
+}
+
+Enum Roles {
+  Super
+  Customer
+}
+
+Enum UserStatus {
+  Active
+  Canceled
+  Deleted
+  Unverified
+}
