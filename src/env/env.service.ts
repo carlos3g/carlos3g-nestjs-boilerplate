@@ -22,12 +22,12 @@ export class EnvService {
   }
 
   public get POSTGRES_API_URL(): string {
-    const dbHost = this.configService.get<string>('BOILERPLATE_DB_HOST');
-    const dbPort = this.configService.get<string>('BOILERPLATE_DB_PORT');
-    const dbDatabase = this.configService.get<string>('BOILERPLATE_DB_DATABASE');
-    const dbUsername = this.configService.get<string>('BOILERPLATE_DB_USERNAME');
-    const dbPassword = this.configService.get<string>('BOILERPLATE_DB_PASSWORD');
-    const dbSchema = this.configService.get<string>('BOILERPLATE_DB_SCHEMA');
+    const dbHost = this.configService.get<string>('DB_HOST');
+    const dbPort = this.configService.get<string>('DB_PORT');
+    const dbDatabase = this.configService.get<string>('DB_DATABASE');
+    const dbUsername = this.configService.get<string>('DB_USERNAME');
+    const dbPassword = this.configService.get<string>('DB_PASSWORD');
+    const dbSchema = this.configService.get<string>('DB_SCHEMA');
 
     return `postgresql://${dbUsername}:${dbPassword}@${dbHost}:${dbPort}/${dbDatabase}?schema=${dbSchema}`;
   }

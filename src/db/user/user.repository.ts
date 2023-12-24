@@ -36,6 +36,7 @@ export class UserRepository {
     where: AtLeastOne<{
       id?: number | bigint;
       uuid?: string;
+      phone?: string;
     }>;
   }): Promise<User> {
     return this.prismaManager.getClient().user.findUnique({
@@ -94,6 +95,7 @@ export class UserRepository {
     }>;
     data: {
       status?: UserStatus;
+      password?: string;
     };
   }) {
     const { ...input } = args.data;
